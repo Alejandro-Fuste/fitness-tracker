@@ -10,7 +10,7 @@ This is a fitness tracker application that uses a Mongo database, Mongoose schem
 
 ```
 
-AS A athlete
+AS An athlete
 
 I WANT to be able to create and track daily workouts
 
