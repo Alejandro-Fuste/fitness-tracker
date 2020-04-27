@@ -2,14 +2,14 @@
 
 // Dependencies
 const path = require('path');
-const db = require('../models');
+const Workout = require('../models/Workout');
 
 module.exports = function(app) {
 	// Each of the below routes will be used to do CRUD operations.
 
+	// Get route to retrieve all workouts from database
 	app.get('/api/workouts', (req, res) => {
-		db.Workout
-			.find({})
+		Workout.find({})
 			.then((data) => {
 				res.json(data);
 			})
@@ -17,4 +17,24 @@ module.exports = function(app) {
 				res.json(err);
 			});
 	});
+
+	// Get route to retrieve workouts from database that are within a range
+
+	// Post route to add workout to the database
+	app.post('/api/workouts', ({ body }, res) => {
+		const newWorkout = new Workout(body);
+		newWorkout.workoutDay();
+
+		Workout.create(newWorkout)
+			.then((data) => {
+				res.json(data);
+			})
+			.catch((err) => {
+				res.json(err);
+			});
+	});
+
+	// Put route to update workout to the database
+
+	//
 };
