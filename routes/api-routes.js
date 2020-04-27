@@ -19,6 +19,16 @@ module.exports = function(app) {
 	});
 
 	// Get route to retrieve workouts from database that are within a range
+	app.get('/api/workouts/range', (req, res) => {
+		db.collectionName
+			.find({})
+			.then((data) => {
+				res.json(data);
+			})
+			.catch((err) => {
+				res.json(err);
+			});
+	});
 
 	// Post route to add workout to the database
 	app.post('/api/workouts', ({ body }, res) => {
@@ -26,7 +36,7 @@ module.exports = function(app) {
 		newWorkout.workoutDay();
 
 		Workout.create(newWorkout)
-			// .then(({ _id }) => Workout.findOneAndUpdate({}, { $push: [ { _id: params.workout_id } ] }, { new: true }))
+			// .then(() => Workout.findOneAndUpdate({}, { $push: [ { _id: params.id } ] }, { new: true }))
 			.then((data) => {
 				res.json(data);
 			})
@@ -37,7 +47,7 @@ module.exports = function(app) {
 
 	// Put route to update workout to the database
 	app.put('/api/workouts/:workout_id', (req, res) => {
-		Workout.findOneAndUpdate({}, { $push: { _id: params.workout_id } }, { new: true })
+		Workout.findOneAndUpdate({}, { $push: { _id: req.params.workout_id } }, { new: true })
 			.then((data) => {
 				res.json(data);
 			})
