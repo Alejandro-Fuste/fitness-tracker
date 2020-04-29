@@ -31,8 +31,8 @@ module.exports = function(app) {
 	});
 
 	// Post route to add workout to the database
-	app.post('/api/workouts', ({ body }, res) => {
-		const newWorkout = new Workout(body);
+	app.post('/api/workouts', (req, res) => {
+		const newWorkout = new Workout(req.body);
 		newWorkout.workoutDay();
 
 		Workout.create(newWorkout)
@@ -48,8 +48,8 @@ module.exports = function(app) {
 	// Put route to update workout to the database
 	app.put('/api/workouts/:workout_id', (req, res) => {
 		Workout.findOneAndUpdate(
-			req.params.workout_id,
-			{ $push: [ { exercises: req.body } ] },
+			{ _id: req.params.workout_id },
+			{ $push: { exercises: req.body } },
 			{ new: true, runValidators: true }
 		)
 			.then((data) => {
