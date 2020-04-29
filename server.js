@@ -1,6 +1,7 @@
 // Requiring necessary npm packages
 const express = require('express');
 const mongoose = require('mongoose');
+const morgan = require('morgan');
 
 // Requiring .dotenv file
 // require('dotenv').config();
@@ -20,6 +21,9 @@ app.use(express.json());
 
 // Static directory
 app.use(express.static('public'));
+
+// Morgan middleware
+app.use(logger('dev'));
 
 //Starting database with mongoose
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout', { useNewUrlParser: true });
