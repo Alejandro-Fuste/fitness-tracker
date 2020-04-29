@@ -20,8 +20,8 @@ module.exports = function(app) {
 
 	// Get route to retrieve workouts from database that are within a range
 	app.get('/api/workouts/range', (req, res) => {
-		db.collectionName
-			.find({})
+		Workout.find({})
+			.limit(7)
 			.then((data) => {
 				res.json(data);
 			})
@@ -47,7 +47,11 @@ module.exports = function(app) {
 
 	// Put route to update workout to the database
 	app.put('/api/workouts/:workout_id', (req, res) => {
-		Workout.findOneAndUpdate({}, { $push: { _id: req.params.workout_id } }, { new: true })
+		Workout.findOneAndUpdate(
+			req.params.workout_id,
+			{ $push: [ { exercises: req.body } ] },
+			{ new: true, runValidators: true }
+		)
 			.then((data) => {
 				res.json(data);
 			})
