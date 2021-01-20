@@ -8,7 +8,7 @@ This is a fitness tracker application that uses a Mongo database, Mongoose schem
 
 ## User Story
 
-```
+```md
 
 AS An athlete
 
