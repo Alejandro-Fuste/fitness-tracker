@@ -4,7 +4,7 @@
 
 ## Description 
 
-This is a fitness tracker application that uses a Mongo database, Mongoose schema(s), and handles routes with Express. Also, this application is deployed with Heroku. This application allows a user to create a new workout or continue with their last workout. The user can also add exercises and view their stats from the workout. You can see the deployed site by [clicking on this link!](https://zep-fitnesstracker.herokuapp.com/). 
+This is a fitness tracker application that uses a <strong>Mongo database</strong>, <strong>Mongoose schema(s)</strong>, and handles routes with <strong>Express</strong>. Also, this application is deployed with Heroku. This application allows a user to create a new workout or continue with their last workout. The user can also add exercises and view their stats from the workout. You can see the deployed site by [clicking on this link!](https://zep-fitnesstracker.herokuapp.com/). 
 
 ## User Story
 
